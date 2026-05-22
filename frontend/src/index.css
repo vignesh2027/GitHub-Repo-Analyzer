@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #F5F0E8;
+    color: #1C1C1E;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #EDE8DC;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #16A34A;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #15803D;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl border border-warm-200 shadow-sm;
+  }
+  .card-hover {
+    @apply card hover:shadow-md hover:border-forest-200 transition-all duration-200;
+  }
+  .btn-primary {
+    @apply bg-forest-600 text-white font-semibold rounded-xl px-6 py-3 hover:bg-forest-700
+           active:bg-forest-800 transition-colors duration-150 shadow-sm hover:shadow-md;
+  }
+  .btn-ghost {
+    @apply text-forest-700 font-medium rounded-xl px-4 py-2 hover:bg-forest-50
+           transition-colors duration-150;
+  }
+  .stat-pill {
+    @apply flex items-center gap-1.5 px-3 py-1.5 bg-warm-100 rounded-full text-sm font-medium text-stone-700;
+  }
+  .tab-active {
+    @apply bg-forest-600 text-white shadow-sm;
+  }
+  .tab-inactive {
+    @apply text-stone-600 hover:bg-warm-200 hover:text-stone-900;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-forest-600 to-forest-800 bg-clip-text text-transparent;
+  }
+}
+
+/* Markdown styles */
+.markdown-body {
+  @apply text-stone-800 leading-relaxed;
+}
+.markdown-body h1 { @apply text-2xl font-bold mt-6 mb-3 text-stone-900; }
+.markdown-body h2 { @apply text-xl font-bold mt-5 mb-2 text-stone-900; }
+.markdown-body h3 { @apply text-lg font-semibold mt-4 mb-2 text-stone-800; }
+.markdown-body p { @apply mb-3; }
+.markdown-body ul { @apply list-disc pl-5 mb-3 space-y-1; }
+.markdown-body ol { @apply list-decimal pl-5 mb-3 space-y-1; }
+.markdown-body li { @apply text-stone-700; }
+.markdown-body a { @apply text-forest-600 hover:text-forest-800 underline; }
+.markdown-body code {
+  @apply bg-warm-100 text-forest-700 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+.markdown-body pre {
+  @apply bg-stone-900 text-stone-100 p-4 rounded-xl overflow-x-auto mb-4 text-sm;
+}
+.markdown-body pre code {
+  @apply bg-transparent text-stone-100 p-0;
+}
+.markdown-body blockquote {
+  @apply border-l-4 border-forest-300 pl-4 italic text-stone-600 my-3;
+}
+.markdown-body table { @apply w-full border-collapse mb-4; }
+.markdown-body th { @apply bg-warm-100 font-semibold text-left px-3 py-2 border border-warm-300; }
+.markdown-body td { @apply px-3 py-2 border border-warm-200; }
+.markdown-body img { @apply max-w-full rounded-lg my-3; }
+.markdown-body hr { @apply border-warm-300 my-6; }
+.markdown-body strong { @apply font-semibold text-stone-900; }
+
+/* Loading shimmer */
+.shimmer {
+  background: linear-gradient(90deg, #EDE8DC 25%, #E8E3D8 50%, #EDE8DC 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Heatmap */
+.heatmap-cell {
+  @apply rounded-sm transition-all duration-100 hover:scale-110 cursor-pointer;
+}
+
+/* Gauge animation */
+@keyframes gaugeArc {
+  from { stroke-dashoffset: 283; }
+  to { stroke-dashoffset: var(--target-offset); }
+}
+.gauge-arc {
+  animation: gaugeArc 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}

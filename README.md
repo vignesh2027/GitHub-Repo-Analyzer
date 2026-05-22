@@ -197,19 +197,7 @@ docker compose up --build
 
 ---
 
-## ⚙️ Configuration
-
-### Backend `.env`
-```env
-GITHUB_TOKEN=ghp_your_token_here
-```
-
-### Frontend `VITE_API_URL` (GitHub Secret)
-```
-Name:  VITE_API_URL
-Value: https://your-backend.up.railway.app
-```
-
+## ⚙️ Configuration  --  VISIT MY LINKDIN PROFILE AND THENN ASK ME 
 ---
 
 ## 🌐 Deploy Your Own

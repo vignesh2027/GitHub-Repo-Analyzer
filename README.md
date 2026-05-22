@@ -11,7 +11,7 @@
 <br/><br/>
 
 [![Live Demo](https://img.shields.io/badge/🌐_LIVE_DEMO-Try_It_Now-16A34A?style=for-the-badge&logoColor=white)](https://vignesh2027.github.io/GitHub-Repo-Analyzer/)
-[![GitHub Stars](https://img.shields.io/github/stars/vignesh2027/GitHub-Repo-Analyzer?style=for-the-badge&color=16A34A&logo=github)](https://github.com/vignesh2027/GitHub-Repo-Analyzer/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars227/vignesh2027/GitHub-Repo-Analyzer?style=for-the-badge&color=16A34A&logo=github)](https://github.com/vignesh2027/GitHub-Repo-Analyzer/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/vignesh2027/GitHub-Repo-Analyzer?style=for-the-badge&color=15803D&logo=github)](https://github.com/vignesh2027/GitHub-Repo-Analyzer/network)
 [![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
 

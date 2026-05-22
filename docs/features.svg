@@ -1,0 +1,252 @@
+<svg width="900" height="300" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes slideFeature {
+        0%,8%   { opacity:0; transform:translateY(10px); }
+        12%,20% { opacity:1; transform:translateY(0); }
+        25%,100%{ opacity:0; transform:translateY(-8px); }
+      }
+      .f1 { animation: slideFeature 56s 0s infinite; }
+      .f2 { animation: slideFeature 56s 8s infinite; }
+      .f3 { animation: slideFeature 56s 16s infinite; }
+      .f4 { animation: slideFeature 56s 24s infinite; }
+      .f5 { animation: slideFeature 56s 32s infinite; }
+      .f6 { animation: slideFeature 56s 40s infinite; }
+      .f7 { animation: slideFeature 56s 48s infinite; }
+
+      /* Counter */
+      @keyframes countScore { 0%{opacity:0} 10%,90%{opacity:1} 100%{opacity:0} }
+      .score-anim { animation: countScore 8s infinite; }
+
+      /* Progress bars */
+      @keyframes fillP { 0%{width:0} 40%,100%{width:var(--w)} }
+      .p1 { animation: fillP1 8s infinite; --w:180px; }
+      .p2 { animation: fillP2 8s infinite; --w:140px; }
+      .p3 { animation: fillP3 8s infinite; --w:160px; }
+      .p4 { animation: fillP4 8s infinite; --w:120px; }
+      @keyframes fillP1 { 0%,5%{width:0} 40%,90%{width:180px} 100%{width:0} }
+      @keyframes fillP2 { 0%,10%{width:0} 45%,90%{width:140px} 100%{width:0} }
+      @keyframes fillP3 { 0%,15%{width:0} 50%,90%{width:160px} 100%{width:0} }
+      @keyframes fillP4 { 0%,20%{width:0} 55%,90%{width:120px} 100%{width:0} }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="300" rx="16" fill="#1C1C1E"/>
+  <rect x="1" y="1" width="898" height="298" rx="16" fill="none" stroke="#16A34A" stroke-width="2"/>
+
+  <!-- Static header -->
+  <circle cx="50" cy="40" r="18" fill="#16A34A"/>
+  <text x="50" y="46" text-anchor="middle" fill="white" font-size="14" font-weight="800">R</text>
+  <text x="78" y="35" fill="white" font-size="18" font-weight="800">RepoLens</text>
+  <text x="78" y="53" fill="#16A34A" font-size="11" font-weight="600">GitHub Repository Intelligence</text>
+
+  <!-- Divider -->
+  <line x1="30" y1="70" x2="870" y2="70" stroke="#2C2C2E" stroke-width="1"/>
+
+  <!-- Feature 1: Health Score -->
+  <g class="f1">
+    <text x="450" y="115" text-anchor="middle" fill="#16A34A" font-size="13" font-weight="700">🏥 HEALTH SCORE</text>
+    <text x="450" y="145" text-anchor="middle" fill="white" font-size="32" font-weight="800">97 / 100</text>
+    <text x="450" y="170" text-anchor="middle" fill="#A8A29E" font-size="13">Computed across 7 quality dimensions</text>
+    <rect x="310" y="185" width="80" height="24" rx="12" fill="#16A34A"/>
+    <text x="350" y="201" text-anchor="middle" fill="white" font-size="11" font-weight="700">Grade A ✦</text>
+    <rect x="400" y="185" width="100" height="24" rx="12" fill="#1C1C1E" stroke="#16A34A" stroke-width="1"/>
+    <text x="450" y="201" text-anchor="middle" fill="#16A34A" font-size="11">README · CI · Tests</text>
+    <rect x="510" y="185" width="80" height="24" rx="12" fill="#15803D"/>
+    <text x="550" y="201" text-anchor="middle" fill="white" font-size="11" font-weight="700">Active ⚡</text>
+  </g>
+
+  <!-- Feature 2: Language Breakdown -->
+  <g class="f2">
+    <text x="450" y="115" text-anchor="middle" fill="#16A34A" font-size="13" font-weight="700">🥧 LANGUAGE BREAKDOWN</text>
+    <g>
+      <rect x="230" y="130" width="180" height="14" rx="7" fill="#2C2C2E"/>
+      <rect class="p1" x="230" y="130" height="14" rx="7" fill="#16A34A"/>
+      <text x="420" y="142" fill="white" font-size="11">JavaScript 63%</text>
+
+      <rect x="230" y="152" width="180" height="14" rx="7" fill="#2C2C2E"/>
+      <rect class="p2" x="230" y="152" height="14" rx="7" fill="#F59E0B"/>
+      <text x="420" y="164" fill="white" font-size="11">TypeScript 25%</text>
+
+      <rect x="230" y="174" width="180" height="14" rx="7" fill="#2C2C2E"/>
+      <rect class="p3" x="230" y="174" height="14" rx="7" fill="#6366F1"/>
+      <text x="420" y="186" fill="white" font-size="11">CSS 8%</text>
+
+      <rect x="230" y="196" width="180" height="14" rx="7" fill="#2C2C2E"/>
+      <rect class="p4" x="230" y="196" height="14" rx="7" fill="#EC4899"/>
+      <text x="420" y="208" fill="white" font-size="11">Other 4%</text>
+    </g>
+  </g>
+
+  <!-- Feature 3: Commit Heatmap -->
+  <g class="f3">
+    <text x="450" y="115" text-anchor="middle" fill="#16A34A" font-size="13" font-weight="700">🔥 52-WEEK COMMIT HEATMAP</text>
+    <text x="450" y="138" text-anchor="middle" fill="#A8A29E" font-size="11">GitHub-style activity grid · 1,247 commits this year</text>
+    <!-- Heatmap grid simulation -->
+    <g transform="translate(170, 148)">
+      <!-- 8 weeks × 7 days mini grid -->
+      <script type="text/javascript"><![CDATA[
+      ]]></script>
+      <!-- Row 0 -->
+      <rect x="0"   y="0"  width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="14"  y="0"  width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="28"  y="0"  width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="42"  y="0"  width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="56"  y="0"  width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="70"  y="0"  width="10" height="10" rx="2" fill="#4ADE80"/>
+      <rect x="84"  y="0"  width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="98"  y="0"  width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="112" y="0"  width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="126" y="0"  width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="140" y="0"  width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="154" y="0"  width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="168" y="0"  width="10" height="10" rx="2" fill="#4ADE80"/>
+      <rect x="182" y="0"  width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="196" y="0"  width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="210" y="0"  width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="224" y="0"  width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="238" y="0"  width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="252" y="0"  width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="266" y="0"  width="10" height="10" rx="2" fill="#4ADE80"/>
+      <!-- Row 1 -->
+      <rect x="0"   y="14" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="14"  y="14" width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="28"  y="14" width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="42"  y="14" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="56"  y="14" width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="70"  y="14" width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="84"  y="14" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="98"  y="14" width="10" height="10" rx="2" fill="#4ADE80"/>
+      <rect x="112" y="14" width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="126" y="14" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="140" y="14" width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="154" y="14" width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="168" y="14" width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="182" y="14" width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="196" y="14" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="210" y="14" width="10" height="10" rx="2" fill="#4ADE80"/>
+      <rect x="224" y="14" width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="238" y="14" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="252" y="14" width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="266" y="14" width="10" height="10" rx="2" fill="#22C55E"/>
+      <!-- Row 2 -->
+      <rect x="0"   y="28" width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="14"  y="28" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="28"  y="28" width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="42"  y="28" width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="56"  y="28" width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="70"  y="28" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="84"  y="28" width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="98"  y="28" width="10" height="10" rx="2" fill="#4ADE80"/>
+      <rect x="112" y="28" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="126" y="28" width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="140" y="28" width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="154" y="28" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="168" y="28" width="10" height="10" rx="2" fill="#15803D"/>
+      <rect x="182" y="28" width="10" height="10" rx="2" fill="#86EFAC"/>
+      <rect x="196" y="28" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="210" y="28" width="10" height="10" rx="2" fill="#22C55E"/>
+      <rect x="224" y="28" width="10" height="10" rx="2" fill="#4ADE80"/>
+      <rect x="238" y="28" width="10" height="10" rx="2" fill="#DCFCE7"/>
+      <rect x="252" y="28" width="10" height="10" rx="2" fill="#16A34A"/>
+      <rect x="266" y="28" width="10" height="10" rx="2" fill="#86EFAC"/>
+    </g>
+    <text x="450" y="250" text-anchor="middle" fill="#16A34A" font-size="11">▬▬ Less  ▮▮▮▮▮  More</text>
+  </g>
+
+  <!-- Feature 4: Contributors -->
+  <g class="f4">
+    <text x="450" y="115" text-anchor="middle" fill="#16A34A" font-size="13" font-weight="700">👥 TOP CONTRIBUTORS</text>
+    <text x="450" y="135" text-anchor="middle" fill="#A8A29E" font-size="11">Bar chart · Avatar grid · Contribution share</text>
+    <g transform="translate(260,145)">
+      <rect x="0"   y="0" width="38" height="85" rx="4" fill="#16A34A"/>
+      <rect x="48"  y="20" width="38" height="65" rx="4" fill="#22C55E"/>
+      <rect x="96"  y="35" width="38" height="50" rx="4" fill="#4ADE80"/>
+      <rect x="144" y="45" width="38" height="40" rx="4" fill="#86EFAC"/>
+      <rect x="192" y="55" width="38" height="30" rx="4" fill="#BBF7D0"/>
+      <text x="19"  y="99" text-anchor="middle" fill="#A8A29E" font-size="8">gaearon</text>
+      <text x="67"  y="99" text-anchor="middle" fill="#A8A29E" font-size="8">sebmarkb</text>
+      <text x="115" y="99" text-anchor="middle" fill="#A8A29E" font-size="8">acdlite</text>
+      <text x="163" y="99" text-anchor="middle" fill="#A8A29E" font-size="8">bvaughn</text>
+      <text x="211" y="99" text-anchor="middle" fill="#A8A29E" font-size="8">sophiebits</text>
+    </g>
+  </g>
+
+  <!-- Feature 5: Dependencies -->
+  <g class="f5">
+    <text x="450" y="115" text-anchor="middle" fill="#16A34A" font-size="13" font-weight="700">📦 DEPENDENCY DETECTION</text>
+    <text x="450" y="135" text-anchor="middle" fill="#A8A29E" font-size="11">Auto-parse package.json · requirements.txt · Cargo.toml · go.mod</text>
+    <g transform="translate(200, 150)">
+      <rect x="0" y="0" width="500" height="30" rx="6" fill="#2C2C2E"/>
+      <rect x="8" y="8" width="8" height="8" rx="2" fill="#F59E0B"/>
+      <text x="22" y="19" fill="white" font-size="10" font-family="monospace">react</text>
+      <text x="300" y="19" fill="#A8A29E" font-size="10" font-family="monospace">^18.2.0</text>
+      <text x="440" y="19" fill="#16A34A" font-size="9">dependencies</text>
+
+      <rect x="0" y="38" width="500" height="30" rx="6" fill="#2C2C2E"/>
+      <rect x="8" y="46" width="8" height="8" rx="2" fill="#F59E0B"/>
+      <text x="22" y="57" fill="white" font-size="10" font-family="monospace">webpack</text>
+      <text x="300" y="57" fill="#A8A29E" font-size="10" font-family="monospace">^5.88.0</text>
+      <text x="433" y="57" fill="#6366F1" font-size="9">devDependencies</text>
+
+      <rect x="0" y="76" width="500" height="30" rx="6" fill="#2C2C2E"/>
+      <rect x="8" y="84" width="8" height="8" rx="2" fill="#F59E0B"/>
+      <text x="22" y="95" fill="white" font-size="10" font-family="monospace">jest</text>
+      <text x="300" y="95" fill="#A8A29E" font-size="10" font-family="monospace">^29.6.0</text>
+      <text x="433" y="95" fill="#6366F1" font-size="9">devDependencies</text>
+    </g>
+  </g>
+
+  <!-- Feature 6: File Tree -->
+  <g class="f6">
+    <text x="450" y="115" text-anchor="middle" fill="#16A34A" font-size="13" font-weight="700">🗂 FILE STRUCTURE VIEWER</text>
+    <g transform="translate(280, 130)" font-family="monospace" font-size="12">
+      <text x="0"  y="20" fill="#F59E0B">📁 src</text>
+      <text x="20" y="40" fill="white">⚛️  components</text>
+      <text x="20" y="58" fill="white">📁 hooks</text>
+      <text x="20" y="76" fill="#16A34A">📝 App.jsx</text>
+      <text x="20" y="94" fill="#16A34A">📝 index.js</text>
+      <text x="0"  y="114" fill="white">📋 package.json</text>
+      <text x="0"  y="132" fill="white">📝 README.md</text>
+      <text x="200" y="20"  fill="#F59E0B">📁 tests</text>
+      <text x="220" y="40"  fill="white">🧪 App.test.js</text>
+      <text x="200" y="58"  fill="white">⚙️  .github</text>
+      <text x="220" y="76"  fill="#16A34A">workflows</text>
+      <text x="200" y="94"  fill="white">📋 Dockerfile</text>
+      <text x="200" y="114" fill="white">⚙️  .eslintrc</text>
+    </g>
+  </g>
+
+  <!-- Feature 7: Share Card -->
+  <g class="f7">
+    <text x="450" y="110" text-anchor="middle" fill="#16A34A" font-size="13" font-weight="700">📤 SHARE CARD EXPORT</text>
+    <!-- Mini share card -->
+    <rect x="230" y="125" width="440" height="140" rx="10" fill="white"/>
+    <circle cx="265" cy="158" r="18" fill="#1C1C1E"/>
+    <text x="265" y="163" text-anchor="middle" fill="white" font-size="11" font-weight="700">fb</text>
+    <text x="290" y="153" fill="#1C1C1E" font-size="12" font-weight="800">facebook/react</text>
+    <text x="290" y="168" fill="#6B7280" font-size="10">The library for web and native user interfaces</text>
+    <circle cx="610" cy="155" r="25" fill="#16A34A"/>
+    <text x="610" y="151" text-anchor="middle" fill="white" font-size="14" font-weight="800">97</text>
+    <text x="610" y="165" text-anchor="middle" fill="white" font-size="8">Health</text>
+    <text x="610" y="175" text-anchor="middle" fill="white" font-size="8">Grade A</text>
+    <!-- Stats row -->
+    <rect x="240" y="185" width="100" height="30" rx="6" fill="#F5F0E8"/>
+    <text x="290" y="197" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">⭐ 226k Stars</text>
+    <rect x="350" y="185" width="90" height="30" rx="6" fill="#F5F0E8"/>
+    <text x="395" y="197" text-anchor="middle" fill="#1C1C1E" font-size="10">🍴 46k Forks</text>
+    <rect x="450" y="185" width="90" height="30" rx="6" fill="#F5F0E8"/>
+    <text x="495" y="197" text-anchor="middle" fill="#1C1C1E" font-size="10">✅ CI/CD</text>
+    <text x="450" y="250" text-anchor="middle" fill="#6B7280" font-size="9">Analyzed by RepoLens · vignesh2027.github.io/GitHub-Repo-Analyzer</text>
+  </g>
+
+  <!-- Static bottom bar -->
+  <rect x="0" y="270" width="900" height="30" rx="0" fill="#16A34A"/>
+  <rect x="0" y="270" width="900" height="30" rx="0" fill="none"/>
+  <rect x="0" y="284" width="900" height="16" rx="0" fill="#15803D"/>
+  <rect x="0" y="270" width="900" height="30" fill="#16A34A"/>
+  <text x="450" y="289" text-anchor="middle" fill="white" font-size="11" font-weight="700">
+    ✦ RepoLens — 10 Features · Instant Analysis · Beautiful Visualizations ✦
+  </text>
+</svg>

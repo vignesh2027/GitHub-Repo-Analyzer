@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import SearchPage from './components/SearchPage'
 import Dashboard from './components/Dashboard'
+import SplashScreen from './components/SplashScreen'
 import { analyzeRepo } from './api/github'
 
 export default function App() {
+  const [splashDone, setSplashDone] = useState(false)
+  const handleSplashDone = useCallback(() => setSplashDone(true), [])
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -32,6 +35,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-warm-100">
+      {!splashDone && <SplashScreen onDone={handleSplashDone} />}
       {!data ? (
         <SearchPage onAnalyze={handleAnalyze} loading={loading} error={error} />
       ) : (

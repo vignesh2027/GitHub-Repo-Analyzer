@@ -1,0 +1,365 @@
+<svg width="900" height="520" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap');
+      * { font-family: 'Inter', system-ui, sans-serif; }
+
+      /* Phase timings: search 0-4s, loading 4-7s, dashboard 7-16s, loop */
+      .phase-search { animation: showHide 16s infinite; }
+      .phase-loading { animation: showHideLoad 16s infinite; }
+      .phase-dash   { animation: showHideDash 16s infinite; }
+
+      @keyframes showHide {
+        0%   { opacity:1 } 25% { opacity:1 }
+        30%  { opacity:0 } 95% { opacity:0 }
+        100% { opacity:1 }
+      }
+      @keyframes showHideLoad {
+        0%   { opacity:0 } 25% { opacity:0 }
+        30%  { opacity:1 } 44% { opacity:1 }
+        48%  { opacity:0 } 100%{ opacity:0 }
+      }
+      @keyframes showHideDash {
+        0%   { opacity:0 } 44% { opacity:0 }
+        50%  { opacity:1 } 93% { opacity:1 }
+        98%  { opacity:0 } 100%{ opacity:0 }
+      }
+
+      /* Typing cursor */
+      .cursor { animation: blink 0.7s step-end infinite; }
+      @keyframes blink { 50% { opacity:0 } }
+
+      /* URL typing */
+      .url-text { animation: typeUrl 16s infinite; }
+      @keyframes typeUrl {
+        0%   { clip-path: inset(0 100% 0 0); }
+        5%   { clip-path: inset(0 80%  0 0); }
+        10%  { clip-path: inset(0 60%  0 0); }
+        15%  { clip-path: inset(0 40%  0 0); }
+        20%  { clip-path: inset(0 20%  0 0); }
+        25%  { clip-path: inset(0 0%   0 0); }
+        100% { clip-path: inset(0 0%   0 0); }
+      }
+
+      /* Spinner */
+      .spinner { animation: spin 1s linear infinite; transform-origin: 450px 300px; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      /* Scan line */
+      .scan { animation: scanMove 16s infinite; }
+      @keyframes scanMove {
+        0%,30%  { transform: translateY(0); opacity:0; }
+        35%     { opacity:1; transform: translateY(0); }
+        43%     { opacity:1; transform: translateY(60px); }
+        48%     { opacity:0; }
+        100%    { opacity:0; }
+      }
+
+      /* Bar chart builds */
+      .bar1 { animation: growBar1 16s infinite; }
+      .bar2 { animation: growBar2 16s infinite; }
+      .bar3 { animation: growBar3 16s infinite; }
+      .bar4 { animation: growBar4 16s infinite; }
+      .bar5 { animation: growBar5 16s infinite; }
+      @keyframes growBar1 { 0%,50%{height:0;y:295} 60%,93%{height:80;y:215} 98%,100%{height:0;y:295} }
+      @keyframes growBar2 { 0%,52%{height:0;y:295} 63%,93%{height:110;y:185} 98%,100%{height:0;y:295} }
+      @keyframes growBar3 { 0%,54%{height:0;y:295} 66%,93%{height:60;y:235} 98%,100%{height:0;y:295} }
+      @keyframes growBar4 { 0%,56%{height:0;y:295} 69%,93%{height:90;y:205} 98%,100%{height:0;y:295} }
+      @keyframes growBar5 { 0%,58%{height:0;y:295} 72%,93%{height:45;y:250} 98%,100%{height:0;y:295} }
+
+      /* Gauge arc */
+      .gauge-arc { animation: fillGauge 16s infinite; }
+      @keyframes fillGauge {
+        0%,50%   { stroke-dashoffset: 220; }
+        68%,93%  { stroke-dashoffset: 55; }
+        98%,100% { stroke-dashoffset: 220; }
+      }
+
+      /* Pie slices */
+      .pie1 { animation: growPie1 16s infinite; }
+      .pie2 { animation: growPie2 16s infinite; }
+      @keyframes growPie1 { 0%,55%{opacity:0} 65%,93%{opacity:1} 98%,100%{opacity:0} }
+      @keyframes growPie2 { 0%,60%{opacity:0} 70%,93%{opacity:1} 98%,100%{opacity:0} }
+
+      /* Card fade in */
+      .card-fade { animation: cardIn 16s infinite; }
+      @keyframes cardIn { 0%,49%{opacity:0} 57%,93%{opacity:1} 98%,100%{opacity:0} }
+
+      /* Heatmap cells */
+      .hm { animation: hmGrow 16s infinite; }
+      @keyframes hmGrow { 0%,60%{opacity:0} 72%,93%{opacity:1} 98%,100%{opacity:0} }
+
+      /* Score counter */
+      .score-num { animation: countUp 16s infinite; }
+      @keyframes countUp {
+        0%,50%  { opacity:0; }
+        55%     { opacity:1; }
+        60%,93% { opacity:1; }
+        98%     { opacity:0; }
+        100%    { opacity:0; }
+      }
+
+      /* Button pulse */
+      .btn-glow { animation: btnPulse 16s infinite; }
+      @keyframes btnPulse {
+        0%,20%  { filter: drop-shadow(0 0 0px #16A34A); }
+        23%     { filter: drop-shadow(0 0 12px #16A34A); }
+        26%     { filter: drop-shadow(0 0 4px #16A34A); }
+        100%    { filter: drop-shadow(0 0 0px #16A34A); }
+      }
+
+      /* Progress bar */
+      .progress-fill { animation: fillBar 16s infinite; }
+      @keyframes fillBar {
+        0%,30% { width:0; }
+        32%    { width:20; }
+        36%    { width:80; }
+        40%    { width:160; }
+        44%    { width:200; }
+        48%    { width:200; }
+        50%    { width:0; }
+        100%   { width:0; }
+      }
+    </style>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#00000020"/>
+    </filter>
+    <clipPath id="screen">
+      <rect x="50" y="60" width="800" height="420" rx="12"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" rx="16" fill="#F5F0E8"/>
+
+  <!-- Browser chrome -->
+  <rect x="50" y="20" width="800" height="480" rx="14" fill="white" filter="url(#shadow)"/>
+  <rect x="50" y="20" width="800" height="44" rx="14" fill="#1C1C1E"/>
+  <rect x="50" y="42" width="800" height="22" fill="#1C1C1E"/>
+  <!-- Traffic lights -->
+  <circle cx="84" cy="42" r="6" fill="#FF5F57"/>
+  <circle cx="104" cy="42" r="6" fill="#FEBC2E"/>
+  <circle cx="124" cy="42" r="6" fill="#28C840"/>
+  <!-- URL bar -->
+  <rect x="180" y="30" width="460" height="24" rx="12" fill="#2C2C2E"/>
+  <text x="200" y="47" fill="#8E8E93" font-size="11" font-family="monospace">vignesh2027.github.io/GitHub-Repo-Analyzer</text>
+  <!-- GitHub logo in URL bar -->
+  <circle cx="192" cy="42" r="6" fill="#8E8E93"/>
+
+  <!-- SCREEN AREA -->
+  <g clip-path="url(#screen)">
+
+    <!-- ═══════════════ PHASE 1: SEARCH PAGE ═══════════════ -->
+    <g class="phase-search">
+      <!-- Warm white bg -->
+      <rect x="50" y="64" width="800" height="416" fill="#F5F0E8"/>
+
+      <!-- Logo -->
+      <circle cx="450" cy="140" r="28" fill="#16A34A"/>
+      <text x="450" y="146" text-anchor="middle" fill="white" font-size="22" font-weight="800">R</text>
+
+      <text x="450" y="185" text-anchor="middle" fill="#1C1C1E" font-size="28" font-weight="800">RepoLens</text>
+      <text x="450" y="210" text-anchor="middle" fill="#78716C" font-size="13">Understand any GitHub repository in seconds</text>
+
+      <!-- Search box -->
+      <rect x="240" y="230" width="420" height="48" rx="12" fill="white" stroke="#16A34A" stroke-width="2.5"/>
+      <!-- GitHub icon inside input -->
+      <circle cx="268" cy="254" r="9" fill="#1C1C1E"/>
+      <text x="268" y="258" text-anchor="middle" fill="white" font-size="8" font-weight="700">GH</text>
+
+      <!-- Typing URL text -->
+      <g class="url-text">
+        <text x="286" y="259" fill="#1C1C1E" font-size="13" font-family="monospace">github.com/facebook/react</text>
+      </g>
+      <rect class="cursor" x="530" y="246" width="2" height="16" fill="#16A34A"/>
+
+      <!-- Analyze button -->
+      <g class="btn-glow">
+        <rect x="240" y="295" width="420" height="44" rx="12" fill="#16A34A"/>
+        <text x="450" y="323" text-anchor="middle" fill="white" font-size="14" font-weight="700">🔍  Analyze Repository</text>
+      </g>
+
+      <!-- Featured repos -->
+      <text x="450" y="365" text-anchor="middle" fill="#A8A29E" font-size="11">Try: facebook/react · microsoft/vscode · torvalds/linux</text>
+    </g>
+
+    <!-- ═══════════════ PHASE 2: LOADING ═══════════════ -->
+    <g class="phase-loading">
+      <rect x="50" y="64" width="800" height="416" fill="#F5F0E8"/>
+
+      <!-- Spinner ring -->
+      <circle cx="450" cy="220" r="40" fill="none" stroke="#EDE8DC" stroke-width="6"/>
+      <circle class="spinner" cx="450" cy="220" r="40" fill="none" stroke="#16A34A" stroke-width="6"
+              stroke-dasharray="60 190" stroke-linecap="round"/>
+
+      <!-- GitHub logo center -->
+      <circle cx="450" cy="220" r="18" fill="#1C1C1E"/>
+      <text x="450" y="225" text-anchor="middle" fill="white" font-size="13" font-weight="800">GH</text>
+
+      <text x="450" y="285" text-anchor="middle" fill="#1C1C1E" font-size="15" font-weight="700">Analyzing facebook/react</text>
+
+      <!-- Progress bar -->
+      <rect x="325" y="300" width="250" height="5" rx="3" fill="#EDE8DC"/>
+      <rect class="progress-fill" x="325" y="300" height="5" rx="3" fill="#16A34A"/>
+
+      <!-- Scan labels -->
+      <g class="scan">
+        <text x="450" y="325" text-anchor="middle" fill="#16A34A" font-size="12">✦ Fetching repository data...</text>
+      </g>
+
+      <text x="450" y="360" text-anchor="middle" fill="#A8A29E" font-size="11">Powered by GitHub API · Results cached for 10 min</text>
+    </g>
+
+    <!-- ═══════════════ PHASE 3: DASHBOARD ═══════════════ -->
+    <g class="phase-dash">
+      <rect x="50" y="64" width="800" height="416" fill="#F5F0E8"/>
+
+      <!-- Left sidebar -->
+      <rect x="50" y="64" width="185" height="416" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+
+      <!-- Repo info -->
+      <circle cx="90" cy="100" r="18" fill="#1C1C1E"/>
+      <text x="90" y="105" text-anchor="middle" fill="white" font-size="11" font-weight="700">fb</text>
+      <text x="115" y="98" fill="#1C1C1E" font-size="11" font-weight="700">facebook/react</text>
+      <text x="115" y="112" fill="#78716C" font-size="9">⭐ 226k  🍴 46k</text>
+
+      <!-- Health gauge (mini) -->
+      <text x="117" y="140" text-anchor="middle" fill="#6B7280" font-size="9" font-weight="600">HEALTH SCORE</text>
+      <circle cx="117" cy="170" r="28" fill="none" stroke="#EDE8DC" stroke-width="6"/>
+      <circle class="gauge-arc" cx="117" cy="170" r="28" fill="none" stroke="#16A34A" stroke-width="6"
+              stroke-dasharray="220" stroke-dashoffset="220" stroke-linecap="round"
+              transform="rotate(-135 117 170)"/>
+      <text class="score-num" x="117" y="174" text-anchor="middle" fill="#16A34A" font-size="16" font-weight="800">97</text>
+      <rect x="97" y="200" width="40" height="16" rx="8" fill="#16A34A"/>
+      <text x="117" y="212" text-anchor="middle" fill="white" font-size="9" font-weight="700">Grade A</text>
+
+      <!-- Meta rows -->
+      <g class="card-fade">
+        <text x="65" y="235" fill="#6B7280" font-size="9">📜 MIT License</text>
+        <text x="65" y="250" fill="#6B7280" font-size="9">💻 JavaScript</text>
+        <text x="65" y="265" fill="#6B7280" font-size="9">📅 Created 2013</text>
+        <text x="65" y="280" fill="#6B7280" font-size="9">🏷 react · ui · javascript</text>
+      </g>
+
+      <!-- Top nav tabs -->
+      <rect x="235" y="64" width="615" height="36" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+      <rect x="242" y="72" width="68" height="22" rx="6" fill="#16A34A"/>
+      <text x="276" y="87" text-anchor="middle" fill="white" font-size="10" font-weight="700">Overview</text>
+      <text x="340" y="87" fill="#6B7280" font-size="10">Code</text>
+      <text x="385" y="87" fill="#6B7280" font-size="10">Activity</text>
+      <text x="440" y="87" fill="#6B7280" font-size="10">Contributors</text>
+      <text x="520" y="87" fill="#6B7280" font-size="10">README</text>
+
+      <!-- Stats cards row -->
+      <g class="card-fade">
+        <rect x="238" y="108" width="88" height="52" rx="8" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+        <text x="282" y="128" text-anchor="middle" fill="#92400E" font-size="16" font-weight="800">226k</text>
+        <text x="282" y="143" text-anchor="middle" fill="#6B7280" font-size="9">⭐ Stars</text>
+
+        <rect x="334" y="108" width="88" height="52" rx="8" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+        <text x="378" y="128" text-anchor="middle" fill="#1C1C1E" font-size="16" font-weight="800">46k</text>
+        <text x="378" y="143" text-anchor="middle" fill="#6B7280" font-size="9">🍴 Forks</text>
+
+        <rect x="430" y="108" width="88" height="52" rx="8" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+        <text x="474" y="128" text-anchor="middle" fill="#1C1C1E" font-size="16" font-weight="800">1.4k</text>
+        <text x="474" y="143" text-anchor="middle" fill="#6B7280" font-size="9">🐛 Issues</text>
+
+        <rect x="526" y="108" width="88" height="52" rx="8" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+        <text x="570" y="128" text-anchor="middle" fill="#15803D" font-size="16" font-weight="800">97%</text>
+        <text x="570" y="143" text-anchor="middle" fill="#6B7280" font-size="9">✅ Resolved</text>
+
+        <rect x="622" y="108" width="88" height="52" rx="8" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+        <text x="666" y="128" text-anchor="middle" fill="#1C1C1E" font-size="16" font-weight="800">52w</text>
+        <text x="666" y="143" text-anchor="middle" fill="#6B7280" font-size="9">🔥 Active</text>
+      </g>
+
+      <!-- Language pie chart card -->
+      <rect x="238" y="168" width="200" height="170" rx="10" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+      <text x="338" y="188" text-anchor="middle" fill="#1C1C1E" font-size="10" font-weight="700">Language Breakdown</text>
+
+      <!-- Pie chart -->
+      <g class="pie1">
+        <circle cx="318" cy="265" r="52" fill="none" stroke="#16A34A" stroke-width="28"
+                stroke-dasharray="163 163" stroke-dashoffset="0" transform="rotate(-90 318 265)"/>
+        <circle cx="318" cy="265" r="52" fill="none" stroke="#F59E0B" stroke-width="28"
+                stroke-dasharray="65 163" stroke-dashoffset="-163" transform="rotate(-90 318 265)"/>
+        <circle cx="318" cy="265" r="52" fill="none" stroke="#6366F1" stroke-width="28"
+                stroke-dasharray="35 163" stroke-dashoffset="-228" transform="rotate(-90 318 265)"/>
+        <circle cx="318" cy="265" r="38" fill="white"/>
+      </g>
+      <g class="pie2">
+        <text x="318" y="261" text-anchor="middle" fill="#1C1C1E" font-size="11" font-weight="800">JS 63%</text>
+        <text x="318" y="274" text-anchor="middle" fill="#6B7280" font-size="8">TypeScript 25%</text>
+      </g>
+      <g class="card-fade">
+        <rect x="248" y="316" width="8" height="8" rx="2" fill="#16A34A"/>
+        <text x="260" y="324" fill="#6B7280" font-size="8">JavaScript 63%</text>
+        <rect x="310" y="316" width="8" height="8" rx="2" fill="#F59E0B"/>
+        <text x="322" y="324" font-size="8" fill="#6B7280">TypeScript 25%</text>
+      </g>
+
+      <!-- Commit bar chart card -->
+      <rect x="446" y="168" width="264" height="170" rx="10" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+      <text x="578" y="188" text-anchor="middle" fill="#1C1C1E" font-size="10" font-weight="700">Commit Activity</text>
+
+      <!-- Bars -->
+      <rect class="bar1" x="475" y="295" width="28" rx="4" fill="#16A34A"/>
+      <rect class="bar2" x="515" y="295" width="28" rx="4" fill="#22C55E"/>
+      <rect class="bar3" x="555" y="295" width="28" rx="4" fill="#4ADE80"/>
+      <rect class="bar4" x="595" y="295" width="28" rx="4" fill="#16A34A"/>
+      <rect class="bar5" x="635" y="295" width="28" rx="4" fill="#86EFAC"/>
+      <line x1="460" y1="295" x2="720" y2="295" stroke="#EDE8DC" stroke-width="1"/>
+
+      <!-- Heatmap strip -->
+      <g class="hm">
+        <text x="578" y="320" text-anchor="middle" fill="#6B7280" font-size="8">52-week commit heatmap</text>
+        <!-- Heatmap cells row -->
+        <rect x="462" y="328" width="8" height="8" rx="1" fill="#DCFCE7"/>
+        <rect x="472" y="328" width="8" height="8" rx="1" fill="#86EFAC"/>
+        <rect x="482" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+        <rect x="492" y="328" width="8" height="8" rx="1" fill="#22C55E"/>
+        <rect x="502" y="328" width="8" height="8" rx="1" fill="#4ADE80"/>
+        <rect x="512" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+        <rect x="522" y="328" width="8" height="8" rx="1" fill="#86EFAC"/>
+        <rect x="532" y="328" width="8" height="8" rx="1" fill="#DCFCE7"/>
+        <rect x="542" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+        <rect x="552" y="328" width="8" height="8" rx="1" fill="#22C55E"/>
+        <rect x="562" y="328" width="8" height="8" rx="1" fill="#4ADE80"/>
+        <rect x="572" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+        <rect x="582" y="328" width="8" height="8" rx="1" fill="#DCFCE7"/>
+        <rect x="592" y="328" width="8" height="8" rx="1" fill="#86EFAC"/>
+        <rect x="602" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+        <rect x="612" y="328" width="8" height="8" rx="1" fill="#22C55E"/>
+        <rect x="622" y="328" width="8" height="8" rx="1" fill="#DCFCE7"/>
+        <rect x="632" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+        <rect x="642" y="328" width="8" height="8" rx="1" fill="#4ADE80"/>
+        <rect x="652" y="328" width="8" height="8" rx="1" fill="#86EFAC"/>
+        <rect x="662" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+        <rect x="672" y="328" width="8" height="8" rx="1" fill="#22C55E"/>
+        <rect x="682" y="328" width="8" height="8" rx="1" fill="#DCFCE7"/>
+        <rect x="692" y="328" width="8" height="8" rx="1" fill="#16A34A"/>
+      </g>
+
+      <!-- Bottom branding -->
+      <rect x="50" y="452" width="800" height="32" fill="white" stroke="#EDE8DC" stroke-width="1"/>
+      <text x="450" y="472" text-anchor="middle" fill="#A8A29E" font-size="10">
+        RepoLens · github.com/vignesh2027/GitHub-Repo-Analyzer · Made with ♥ using GitHub API
+      </text>
+    </g>
+
+  </g>
+
+  <!-- Border overlay -->
+  <rect x="50" y="20" width="800" height="480" rx="14" fill="none" stroke="#EDE8DC" stroke-width="1.5"/>
+
+  <!-- Bottom label -->
+  <rect x="280" y="490" width="340" height="22" rx="11" fill="#16A34A"/>
+  <text x="450" y="505" text-anchor="middle" fill="white" font-size="11" font-weight="700">
+    🔍 RepoLens — GitHub Repository Intelligence
+  </text>
+</svg>

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { ArrowLeft, Share2, Download, Github, Layers, Activity, Users, Package, BookOpen, Search } from 'lucide-react'
+import { ArrowLeft, Share2, Download, Github, Layers, Activity, Users, Package, BookOpen, Search, Twitter, Linkedin, Copy, Check } from 'lucide-react'
 import { toPng } from 'html-to-image'
 import clsx from 'clsx'
 import Sidebar from './Sidebar'
@@ -87,7 +87,23 @@ export default function Dashboard({ data, onBack, repoUrl }) {
   const [activeTab, setActiveTab] = useState('overview')
   const [showShare, setShowShare] = useState(false)
   const [exporting, setExporting] = useState(false)
+  const [copied, setCopied] = useState(false)
   const shareCardRef = useRef(null)
+
+  const shareText = `Just analyzed ${data.repo_data.full_name} with RepoLens 🔍\n\n⭐ ${data.repo_data.stars?.toLocaleString()} stars | 🏥 Health Score: ${data.health.total}/100 (Grade ${data.health.grade}) | 💻 ${data.repo_data.language}\n\nCheck out any GitHub repo instantly 👇`
+  const shareUrl = 'https://vignesh2027.github.io/GitHub-Repo-Analyzer'
+
+  const shareToTwitter = () => {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank')
+  }
+  const shareToLinkedIn = () => {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank')
+  }
+  const copyLink = async () => {
+    await navigator.clipboard.writeText(`${shareText}\n\n${shareUrl}`)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   const handleExport = async () => {
     if (!shareCardRef.current) return
@@ -180,21 +196,47 @@ export default function Dashboard({ data, onBack, repoUrl }) {
       {/* Share modal */}
       {showShare && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowShare(false)}>
-          <div className="bg-warm-50 rounded-2xl p-6 shadow-2xl" onClick={e => e.stopPropagation()}>
-            <h3 className="text-base font-bold text-stone-800 mb-4">Share Report Card</h3>
+          <div className="bg-warm-50 rounded-2xl p-6 shadow-2xl max-w-lg w-full" onClick={e => e.stopPropagation()}>
+            <h3 className="text-base font-bold text-stone-800 mb-4">Share This Analysis</h3>
             <ShareCard data={data} cardRef={shareCardRef} />
+
+            {/* Social share buttons */}
+            <div className="grid grid-cols-3 gap-2 mt-4">
+              <button onClick={shareToTwitter}
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#1DA1F2] text-white text-sm font-semibold hover:bg-[#1a8cd8] transition-colors">
+                <Twitter size={15} /> Twitter
+              </button>
+              <button onClick={shareToLinkedIn}
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#0A66C2] text-white text-sm font-semibold hover:bg-[#0958a8] transition-colors">
+                <Linkedin size={15} /> LinkedIn
+              </button>
+              <button onClick={copyLink}
+                className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-stone-800 text-white text-sm font-semibold hover:bg-stone-700 transition-colors">
+                {copied ? <Check size={15} /> : <Copy size={15} />}
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+
             <button
               onClick={handleExport}
               disabled={exporting}
-              className="mt-4 w-full btn-primary flex items-center justify-center gap-2"
+              className="mt-3 w-full btn-primary flex items-center justify-center gap-2"
             >
               {exporting ? (
                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               ) : (
                 <Download size={16} />
               )}
-              {exporting ? 'Exporting...' : 'Download PNG'}
+              {exporting ? 'Exporting...' : 'Download PNG Card'}
             </button>
+
+            {/* Badge code */}
+            <div className="mt-3 p-3 bg-stone-900 rounded-xl">
+              <p className="text-xs text-stone-400 mb-1.5 font-medium">Add RepoLens badge to your README:</p>
+              <code className="text-xs text-forest-400 break-all">
+                {`[![Analyzed by RepoLens](https://img.shields.io/badge/RepoLens-Analyzed-16A34A?style=flat&logo=github)](${shareUrl})`}
+              </code>
+            </div>
           </div>
         </div>
       )}

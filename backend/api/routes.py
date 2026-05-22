@@ -3,8 +3,12 @@ import asyncio
 import re
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, Query
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException, Request
+from pydantic import BaseModel, field_validator
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+
+limiter = Limiter(key_func=get_remote_address)
 
 from analyzer import (
     DEPENDENCY_FILES,
@@ -34,7 +38,8 @@ class AnalyzeRequest(BaseModel):
 
 
 @router.post("/analyze")
-async def analyze_repo(req: AnalyzeRequest):
+@limiter.limit("10/minute")
+async def analyze_repo(request: Request, req: AnalyzeRequest):
     try:
         owner, repo = parse_repo_url(req.url)
     except ValueError as e:

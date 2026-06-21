@@ -131,6 +131,13 @@ Generate a **beautiful PNG summary card** to share on LinkedIn, Twitter, or anyw
 
 ## ⚡ Quick Start
 
+> **☁️ Live demo runs 100% in your browser — no backend, no setup.**
+> The hosted [GitHub Pages site](https://vignesh2027.github.io/GitHub-Repo-Analyzer/) talks
+> directly to the public GitHub REST API from the frontend, so it works out of the box with
+> **no token** (60 requests/hour). Paste your own personal access token in the search box to
+> raise the limit to 5000/hour. The FastAPI backend below is optional — only needed for
+> self-hosting with server-side caching and rate limiting.
+
 ### Run Locally (2 commands)
 
 ```bash
